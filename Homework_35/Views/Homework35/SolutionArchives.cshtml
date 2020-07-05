@@ -1,0 +1,74 @@
+﻿@model IList<BusinessLogic.ModelsDTO.EquationReportDTO>
+
+
+@{
+    ViewBag.Title = "SolutionArchives";
+}
+
+<h2>SolutionArchives</h2>
+
+<form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    User name
+                </th>
+                <th>
+                    A
+                </th>
+                <th>
+                    B
+                </th>
+                <th>
+                    C
+                </th>
+                <th>
+                    X1
+                </th>
+                <th>
+                    X2
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var solutionReport in Model)
+            {
+                <tr>
+                    <td>@solutionReport.ID</td>
+                    <td>@solutionReport.UserName</td>
+                    <td>@solutionReport.FirstCoefficient</td>
+                    <td>@solutionReport.SecondCoefficient</td>
+                    <td>@solutionReport.ThirdCoefficient</td>
+                    @{
+                        if (solutionReport.FirstRoot == null)
+                        {
+                            <td>
+                                None
+                            </td>
+                        }
+                        else
+                        {
+                            <td>@solutionReport.FirstRoot</td>
+                        }
+
+                        if (solutionReport.SecondRoot == null)
+                        {
+                            <td>
+                                None
+                            </td>
+                        }
+                        else
+                        {
+                            <td>@solutionReport.SecondRoot</td>
+                        }
+                    }
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</form>

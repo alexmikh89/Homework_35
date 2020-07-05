@@ -1,0 +1,36 @@
+﻿@model BusinessLogic.ModelsDTO.EquationReportDTO
+
+
+@{
+    ViewBag.Title = "EquationSolution";
+}
+
+<h2>Solution for your equation</h2>
+
+<p> Equation solved succesfully.
+<p>Your equation : @Model.FirstCoefficient&zwj;x<sup>2</sup> + @Model.SecondCoefficient&zwj;x+@Model.ThirdCoefficient=0
+<p>Equation ID in DB: @Model.ID
+<p>Username: @Model.UserName
+<p>
+    Roots for equation:
+
+    @{
+        if (Model.FirstRoot == null)
+        {
+        <p>This equation has no real roots</p>
+    }
+    else if (Model.SecondRoot == null)
+    {
+        <p>
+            X<sub>1,2<</sub>>=@Model.FirstRoot
+        </p>
+    }
+    else
+    {
+        <p>X<sub>1</sub>=@Model.FirstRoot</p>
+        <p>X<sub>2</sub>=@Model.SecondRoot</p>
+    }
+    }
+
+
+
