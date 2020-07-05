@@ -4,9 +4,6 @@ using DataAccess;
 using DataAccess.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
@@ -37,7 +34,7 @@ namespace BusinessLogic
             _homework35Repository.CreateEquationReport(_mapper.Map<EquationReport>(GetEqutionRoots(reportDTO)));
         }
 
-        private EquationReportDTO GetEqutionRoots  (EquationReportDTO reportDTO)
+        private EquationReportDTO GetEqutionRoots(EquationReportDTO reportDTO)
         {
             var discriminant = Math.Pow(reportDTO.SecondCoefficient, 2) - 4 * reportDTO.FirstCoefficient * reportDTO.ThirdCoefficient;
 

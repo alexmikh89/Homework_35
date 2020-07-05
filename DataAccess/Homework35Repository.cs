@@ -1,13 +1,10 @@
 ﻿using DataAccess.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess
 {
-  public  class Homework35Repository
+    public class Homework35Repository
     {
         public IList<EquationReport> GetEquationReports()
         {
@@ -25,6 +22,6 @@ namespace DataAccess
 
                 context.SaveChanges();
             }
-        } 
+        }
     }
 }

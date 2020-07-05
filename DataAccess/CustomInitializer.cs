@@ -1,14 +1,9 @@
 ﻿using DataAccess.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public class CustomInitializer 
+    public class CustomInitializer
         : DropCreateDatabaseAlways<Homework35Context>
     {
         protected override void Seed(Homework35Context context)
@@ -24,7 +19,6 @@ namespace DataAccess
             };
             context.EquationReports.Add(report1);
 
-            
             var report2 = new EquationReport()
             {
                 UserName = "Second test user",
