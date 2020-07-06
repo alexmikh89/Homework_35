@@ -172,9 +172,9 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Homework35\Index.cshtml" />
-    <Content Include="Views\Homework35\NewEquation.cshtml" />
-    <Content Include="Views\Homework35\EquationSolution.cshtml" />
-    <Content Include="Views\Homework35\SolutionArchives.cshtml" />
+    <Content Include="Views\Homework35\CreateNewEquation.cshtml" />
+    <Content Include="Views\Homework35\GetEquationSolution.cshtml" />
+    <Content Include="Views\Homework35\ShowSolutionArchives.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

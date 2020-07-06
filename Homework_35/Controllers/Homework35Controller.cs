@@ -17,7 +17,8 @@ namespace Homework_35.Controllers
         {
             _homework35Manager = new Homework35Manager();
 
-            var mapperConfig = new MapperConfiguration(c=> {
+            var mapperConfig = new MapperConfiguration(c =>
+            {
                 c.CreateMap<EquationReportDTO, EquationReportPL>();
                 c.CreateMap<EquationReportPL, EquationReportDTO>();
             });
@@ -29,37 +30,53 @@ namespace Homework_35.Controllers
             return View();
         }
 
-        public ActionResult SolutionArchives()
+        public ActionResult ShowSolutionArchives()
         {
             var solutionsDTO = _homework35Manager.GetEquationReports();
-            var solutions = _mapper.Map<IList<EquationReportPL>>(solutionsDTO);
+            var solutionsPL = _mapper.Map<IList<EquationReportPL>>(solutionsDTO);
 
-            return View(solutions);
+            return View(solutionsPL);
         }
 
-        [HttpGet]
-        public ActionResult NewEquation()
+        public ActionResult CreateNewEquation()
         {
             return View();
         }
 
+        //[HttpPost]
+        //public ActionResult EquationSolution(EquationReportDTO reportDTO)
+        //{
+
+
+        //    var solvedEquation = _homework35Manager.CreateEquationReport(reportDTO);
+
+        //    ViewBag.UserName = solvedEquation.UserName;
+        //    ViewBag.FirstCoefficient = solvedEquation.FirstCoefficient;
+        //    ViewBag.SecondCoefficient = solvedEquation.SecondCoefficient;
+        //    ViewBag.ThirdCoefficient = solvedEquation.ThirdCoefficient;
+        //    ViewBag.FirstRoot = solvedEquation.FirstRoot;
+        //    ViewBag.SecondRoot = solvedEquation.SecondRoot;
+
+        //    return View();
+        //}
         [HttpPost]
-        public ActionResult NewEquation(EquationReportDTO reportDTO)
+        public ActionResult GetEquationSolution(EquationReportPL reportPL)
+
         {
+            var equationReportDTO = _mapper.Map<EquationReportDTO>(reportPL);
+
+            var equationReportDTOWithRoots = _homework35Manager.CreateEquationReport(equationReportDTO);
+            var equationReportPLWithRoots = _mapper.Map<EquationReportPL>(equationReportDTOWithRoots);
+
+            ViewBag.UserName = equationReportPLWithRoots.UserName;
+            ViewBag.FirstCoefficient = equationReportPLWithRoots.FirstCoefficient;
+            ViewBag.SecondCoefficient = equationReportPLWithRoots.SecondCoefficient;
+            ViewBag.ThirdCoefficient = equationReportPLWithRoots.ThirdCoefficient;
+            ViewBag.FirstRoot = equationReportPLWithRoots.FirstRoot;
+            ViewBag.SecondRoot = equationReportPLWithRoots.SecondRoot;
+
             return View();
         }
 
-        public ActionResult EquationSolution(EquationReportDTO reportDTO)
-        {
-            var solvedEquation = _homework35Manager.CreateEquationReport(reportDTO);
-
-            ViewBag.UserName = solvedEquation.UserName;
-            ViewBag.FirstCoefficient = solvedEquation.FirstCoefficient;
-            ViewBag.SecondCoefficient = solvedEquation.SecondCoefficient;
-            ViewBag.ThirdCoefficient = solvedEquation.ThirdCoefficient;
-            ViewBag.FirstRoot = solvedEquation.FirstRoot;
-            ViewBag.SecondRoot = solvedEquation.SecondRoot;
-            return View();
-        }
     }
 }
