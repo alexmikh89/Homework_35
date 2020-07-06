@@ -3,7 +3,6 @@ using BusinessLogic;
 using BusinessLogic.ModelsDTO;
 using Homework_35.Models;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace Homework_35.Controllers
@@ -43,22 +42,6 @@ namespace Homework_35.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult EquationSolution(EquationReportDTO reportDTO)
-        //{
-
-
-        //    var solvedEquation = _homework35Manager.CreateEquationReport(reportDTO);
-
-        //    ViewBag.UserName = solvedEquation.UserName;
-        //    ViewBag.FirstCoefficient = solvedEquation.FirstCoefficient;
-        //    ViewBag.SecondCoefficient = solvedEquation.SecondCoefficient;
-        //    ViewBag.ThirdCoefficient = solvedEquation.ThirdCoefficient;
-        //    ViewBag.FirstRoot = solvedEquation.FirstRoot;
-        //    ViewBag.SecondRoot = solvedEquation.SecondRoot;
-
-        //    return View();
-        //}
         [HttpPost]
         public ActionResult GetEquationSolution(EquationReportPL reportPL)
 
@@ -77,6 +60,5 @@ namespace Homework_35.Controllers
 
             return View();
         }
-
     }
 }
