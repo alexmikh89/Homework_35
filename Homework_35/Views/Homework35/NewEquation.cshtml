@@ -1,23 +1,32 @@
-﻿@model BusinessLogic.ModelsDTO.EquationReportDTO
-
+﻿
 @{
     ViewBag.Title = "NewEquation";
 }
 
 <h2>NewEquation</h2>
 
-<form method="post">
-    <p>
-        <label>User: </label>
-        <input type="text" name="UserName" />
-    <p>
-        <label>Coefficient A: </label>
-        <input type="text" name="FirstCoefficient" />
-    <p>
-        <label>Coefficient B: </label>
-        <input type="text" name="SecondCoefficient" />
-    <p>
-        <label>Coefficient C: </label>
-        <input type="text" name="ThirdCoefficient" />
-    <p><button type="submit" value="Save">Submit</button>
-</form>
+<body>
+    @using (Html.BeginForm("EquationSolution", "Homework35", FormMethod.Post))
+    {
+        <p>
+            <label>User: </label>
+            <input type="text" name="UserName" />
+            </p>
+        <p>
+            <label>Coefficient A: </label>
+            <input type="text" name="FirstCoefficient" />
+        </p>
+        <p>
+            <label>Coefficient B: </label>
+            <input type="text" name="SecondCoefficient" />
+        </p>
+        <p>
+            <label>Coefficient C: </label>
+            <input type="text" name="ThirdCoefficient" />
+        </p>
+        <p>
+            <button type="submit" value="Save">Submit</button>
+        </p>
+            }
+    </body>
+<p><a href="/Homework35/Index">Back to menu</a>

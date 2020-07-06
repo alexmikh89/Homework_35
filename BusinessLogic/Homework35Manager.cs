@@ -26,15 +26,11 @@ namespace BusinessLogic
 
         public IList<EquationReportDTO> GetEquationReports()
         {
-            return _mapper.Map<IList<EquationReportDTO>>(_homework35Repository.GetEquationReports());
+            var equationReports = _homework35Repository.GetEquationReports();
+            return _mapper.Map<IList<EquationReportDTO>>(equationReports);
         }
 
-        public void CreateEquationReport(EquationReportDTO reportDTO)
-        {
-            _homework35Repository.CreateEquationReport(_mapper.Map<EquationReport>(GetEqutionRoots(reportDTO)));
-        }
-
-        private EquationReportDTO GetEqutionRoots(EquationReportDTO reportDTO)
+        public EquationReportDTO CreateEquationReport(EquationReportDTO reportDTO)
         {
             var discriminant = Math.Pow(reportDTO.SecondCoefficient, 2) - 4 * reportDTO.FirstCoefficient * reportDTO.ThirdCoefficient;
 
@@ -42,11 +38,14 @@ namespace BusinessLogic
             {
                 reportDTO.FirstRoot = (-1 * reportDTO.SecondCoefficient) / (2 * reportDTO.FirstCoefficient);
             }
+
             if (discriminant > 0)
             {
                 reportDTO.FirstRoot = (-1 * reportDTO.SecondCoefficient + Math.Sqrt(discriminant)) / (2 * reportDTO.FirstCoefficient);
                 reportDTO.SecondRoot = (-1 * reportDTO.SecondCoefficient - Math.Sqrt(discriminant)) / (2 * reportDTO.FirstCoefficient);
             }
+
+            _homework35Repository.CreateEquationReport(_mapper.Map<EquationReport>(reportDTO));
 
             return reportDTO;
         }

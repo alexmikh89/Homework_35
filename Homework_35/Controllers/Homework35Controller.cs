@@ -1,5 +1,8 @@
-﻿using BusinessLogic;
+﻿using AutoMapper;
+using BusinessLogic;
 using BusinessLogic.ModelsDTO;
+using Homework_35.Models;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -8,10 +11,17 @@ namespace Homework_35.Controllers
     public class Homework35Controller : Controller
     {
         private readonly Homework35Manager _homework35Manager;
+        private readonly Mapper _mapper;
 
         public Homework35Controller()
         {
             _homework35Manager = new Homework35Manager();
+
+            var mapperConfig = new MapperConfiguration(c=> {
+                c.CreateMap<EquationReportDTO, EquationReportPL>();
+                c.CreateMap<EquationReportPL, EquationReportDTO>();
+            });
+            _mapper = new Mapper(mapperConfig);
         }
 
         public ActionResult Index()
@@ -21,8 +31,8 @@ namespace Homework_35.Controllers
 
         public ActionResult SolutionArchives()
         {
-
-            var solutions = _homework35Manager.GetEquationReports();
+            var solutionsDTO = _homework35Manager.GetEquationReports();
+            var solutions = _mapper.Map<IList<EquationReportPL>>(solutionsDTO);
 
             return View(solutions);
         }
@@ -36,15 +46,20 @@ namespace Homework_35.Controllers
         [HttpPost]
         public ActionResult NewEquation(EquationReportDTO reportDTO)
         {
-            _homework35Manager.CreateEquationReport(reportDTO);
-
-            return RedirectToAction("EquationSolution");
+            return View();
         }
 
-        public ActionResult EquationSolution()
+        public ActionResult EquationSolution(EquationReportDTO reportDTO)
         {
-            var reportDTO = _homework35Manager.GetEquationReports().Last();
-            return View(reportDTO);
+            var solvedEquation = _homework35Manager.CreateEquationReport(reportDTO);
+
+            ViewBag.UserName = solvedEquation.UserName;
+            ViewBag.FirstCoefficient = solvedEquation.FirstCoefficient;
+            ViewBag.SecondCoefficient = solvedEquation.SecondCoefficient;
+            ViewBag.ThirdCoefficient = solvedEquation.ThirdCoefficient;
+            ViewBag.FirstRoot = solvedEquation.FirstRoot;
+            ViewBag.SecondRoot = solvedEquation.SecondRoot;
+            return View();
         }
     }
 }
