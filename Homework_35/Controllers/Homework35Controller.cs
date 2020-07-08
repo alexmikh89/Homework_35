@@ -51,14 +51,8 @@ namespace Homework_35.Controllers
             var equationReportDTOWithRoots = _homework35Manager.CreateEquationReport(equationReportDTO);
             var equationReportPLWithRoots = _mapper.Map<EquationReportPL>(equationReportDTOWithRoots);
 
-            ViewBag.UserName = equationReportPLWithRoots.UserName;
-            ViewBag.FirstCoefficient = equationReportPLWithRoots.FirstCoefficient;
-            ViewBag.SecondCoefficient = equationReportPLWithRoots.SecondCoefficient;
-            ViewBag.ThirdCoefficient = equationReportPLWithRoots.ThirdCoefficient;
-            ViewBag.FirstRoot = equationReportPLWithRoots.FirstRoot;
-            ViewBag.SecondRoot = equationReportPLWithRoots.SecondRoot;
 
-            return View();
+            return View(equationReportPLWithRoots);
         }
     }
 }
