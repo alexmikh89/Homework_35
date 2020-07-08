@@ -19,7 +19,7 @@ namespace Homework_35.Controllers
             var mapperConfig = new MapperConfiguration(c =>
             {
                 c.CreateMap<EquationReportDTO, EquationReportPL>();
-                c.CreateMap<EquationReportPL, EquationReportDTO>();
+                c.CreateMap<EquationConditionsPL, EquationReportDTO>();
             });
             _mapper = new Mapper(mapperConfig);
         }
@@ -31,10 +31,10 @@ namespace Homework_35.Controllers
 
         public ActionResult ShowSolutionArchives()
         {
-            var solutionsDTO = _homework35Manager.GetEquationReports();
-            var solutionsPL = _mapper.Map<IList<EquationReportPL>>(solutionsDTO);
+            var equationReportsDTO = _homework35Manager.GetEquationReports();
+            var equationReportsPL = _mapper.Map<IList<EquationReportPL>>(equationReportsDTO);
 
-            return View(solutionsPL);
+            return View(equationReportsPL);
         }
 
         public ActionResult CreateNewEquation()
@@ -43,16 +43,16 @@ namespace Homework_35.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetEquationSolution(EquationReportPL reportPL)
-
+        public ActionResult GetEquationSolution(EquationConditionsPL equationConditionsPL)
         {
-            var equationReportDTO = _mapper.Map<EquationReportDTO>(reportPL);
+            var equationReportDTO = _mapper.Map<EquationReportDTO>(equationConditionsPL);
 
+            // Throwing equation conditions into manager and getting roots and id for equation from manager.
             var equationReportDTOWithRoots = _homework35Manager.CreateEquationReport(equationReportDTO);
-            var equationReportPLWithRoots = _mapper.Map<EquationReportPL>(equationReportDTOWithRoots);
 
+            var equationReportPL = _mapper.Map<EquationReportPL>(equationReportDTOWithRoots);
 
-            return View(equationReportPLWithRoots);
+            return View(equationReportPL);
         }
     }
 }

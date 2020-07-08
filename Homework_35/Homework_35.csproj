@@ -135,6 +135,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\EquationConditionsPL.cs" />
     <Compile Include="Models\EquationReportPL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

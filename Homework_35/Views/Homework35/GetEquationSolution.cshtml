@@ -33,33 +33,3 @@
     <p>
         <a href="/Homework35/Index">Back to menu</a>
     </p>
-
-
-
-
-    @*<p> Equation solved succesfully.
-        <p>Your equation : @ViewBag.FirstCoefficient&zwj;x<sup>2</sup>+@ViewBag.SecondCoefficient&zwj;x+@ViewBag.ThirdCoefficient=0
-        <p>Equation ID in DB: @ViewBag.ID
-        <p>Username: @ViewBag.UserName
-        <p>
-            Roots for equation:
-
-            @{
-                if (ViewBag.FirstRoot == null)
-                {
-                <p>This equation has no real roots</p>
-            }
-            else if (ViewBag.SecondRoot == null)
-            {
-                <p>
-                    X<sub>1,2<</sub>>=@ViewBag.FirstRoot
-                </p>
-            }
-            else
-            {
-                <p>X<sub>1</sub>=@ViewBag.FirstRoot</p>
-                <p>X<sub>2</sub>=@ViewBag.SecondRoot</p>
-            }
-            }
-
-        <p><a href="/Homework35/Index">Back to menu</a>*@

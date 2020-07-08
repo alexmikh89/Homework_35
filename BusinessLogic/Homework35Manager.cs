@@ -45,7 +45,14 @@ namespace BusinessLogic
                 reportDTO.SecondRoot = (-1 * reportDTO.SecondCoefficient - Math.Sqrt(discriminant)) / (2 * reportDTO.FirstCoefficient);
             }
 
-            _homework35Repository.CreateEquationReport(_mapper.Map<EquationReport>(reportDTO));
+            var equationReportDB = _mapper.Map<EquationReport>(reportDTO);
+
+            // Writing equation's data into DB.
+            // Getting ID of report from DB.
+            var reportID = _homework35Repository.CreateEquationReport(equationReportDB);
+
+            // Assigning a fresh-picked ID from DB to BLreport from.
+            reportDTO.ID = reportID;
 
             return reportDTO;
         }
